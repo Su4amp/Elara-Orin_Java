@@ -12,7 +12,7 @@ import core.GameConfig;
 import core.GamePanel;
 
 public class Map {
-    private final GamePanel gp;
+    
     private final TileManager tileManager;
     private int[][] baseLayer;
     private int[][] propLayer;
@@ -20,7 +20,7 @@ public class Map {
     private int cols;
 
     public Map(GamePanel gp, TileManager tileManager, String mapPath) {
-        this.gp = gp;
+        
         this.tileManager = tileManager;
         // Remover inicialização prematura
         loadMap(mapPath);
@@ -113,29 +113,29 @@ public class Map {
     }
     
 
-    public void draw(Graphics2D g2) {
+    public void draw(Graphics2D g2, int cameraX, int cameraY) {
         // Desenhar camada base
-        drawLayer(g2, baseLayer, 0);
+        drawLayer(g2, baseLayer, 0, cameraX, cameraY);
         // Desenhar camada de props
-        drawLayer(g2, propLayer, 1);
+        drawLayer(g2, propLayer, 1, cameraX, cameraY);
     }
-
-    private void drawLayer(Graphics2D g2, int[][] layer, int layerType) {
-        for(int row = 0; row < rows; row++) {
-            for(int col = 0; col < cols; col++) {
+    
+    private void drawLayer(Graphics2D g2, int[][] layer, int layerType, int cameraX, int cameraY) {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
                 int tileIndex = layer[row][col];
-                if(tileIndex == -1 || tileIndex == Integer.MIN_VALUE) continue;
-                
+                if (tileIndex == -1 || tileIndex == Integer.MIN_VALUE) continue;
+    
                 // Validação crítica!
-                if(tileIndex < 0 || tileIndex >= tileManager.getLayerTiles(layerType).size()) {
+                if (tileIndex < 0 || tileIndex >= tileManager.getLayerTiles(layerType).size()) {
                     System.err.println("Índice inválido: " + tileIndex + " na camada " + layerType);
                     continue;
                 }
-                
+    
                 Tile tile = tileManager.getTile(layerType, tileIndex);
-                if(tile != null && tile.image != null) {
-                    int x = col * GameConfig.TILE_SIZE;
-                    int y = row * GameConfig.TILE_SIZE;
+                if (tile != null && tile.image != null) {
+                    int x = col * GameConfig.TILE_SIZE - cameraX; // Ajuste pela câmera
+                    int y = row * GameConfig.TILE_SIZE - cameraY; // Ajuste pela câmera
                     g2.drawImage(tile.image, x, y, GameConfig.TILE_SIZE, GameConfig.TILE_SIZE, null);
                 }
             }

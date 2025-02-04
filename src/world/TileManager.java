@@ -1,7 +1,6 @@
 package world;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,11 +13,11 @@ import java.util.Map;
 import core.GamePanel;
 
 public class TileManager {
-    private final GamePanel gp;
+    
     private final Map<Integer, List<Tile>> layers = new HashMap<>();
     
     public TileManager(GamePanel gp) {
-        this.gp = gp;
+                
         layers.put(0, new ArrayList<>()); // Camada base
         layers.put(1, new ArrayList<>()); // Camada de props
     }
