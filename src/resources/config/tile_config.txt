@@ -1,0 +1,9 @@
+# Formato: camada,índice_na_camada,caminho_imagem,colisão
+0,0,/resources/tiles/grassTiles/grass01.png,false
+0,1,/resources/tiles/grassTiles/grass02.png,false
+0,2,/resources/tiles/grassTiles/grass_Water1.png,false
+
+1,0,/resources/tiles/propTiles/tree.png,true
+1,1,/resources/tiles/propTiles/box.png,true
+1,2,/resources/tiles/propTiles/table.png,false
+1,3,/resources/tiles/propTiles/barrel.png,true
