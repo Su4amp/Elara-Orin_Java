@@ -1,18 +1,25 @@
-## Getting Started
+# Elara&Orin
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+![Captura de Tela do Jogo](screenshots/game_screenshot.png) <!-- (Adicione depois) -->
 
-## Folder Structure
+Um jogo RPG 2D desenvolvido em Java com foco em exploração e narrativa imersiva.
 
-The workspace contains two folders by default, where:
+## 🚀 Recursos Principais
+- Motor de jogo customizado em Java
+- Sistema de tilemaps com suporte a múltiplas camadas
+- Animação fluída de sprites
+- Sistema de sons e música ambiente
+- IA básica para NPCs e inimigos
+- Sistema de diálogos e missões
+- Interface de usuário intuitiva
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## 📥 Instalação
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+**Pré-requisitos:**
+- Java JDK 17+
+- Gradle 7.6+ (ou Maven 3.8+)
+- IDE recomendada: IntelliJ IDEA ou Eclipse
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+**Passos para execução:**
+Execute o Elara&Orin.exe
+Have FUN! :D
