@@ -115,7 +115,13 @@ public class Player {
     public void draw(Graphics2D g2, int cameraX, int cameraY) {
         int screenX = worldX - cameraX;
         int screenY = worldY - cameraY;
+    
+        // Desenhar o jogador
         g2.drawImage(currentAnimation.getCurrentFrame(), screenX, screenY, GameConfig.TILE_SIZE, GameConfig.TILE_SIZE, null);
+    
+        // Desenhar o retângulo de colisão do jogador (para depuração)
+        g2.setColor(java.awt.Color.GREEN); // Cor do retângulo de colisão do jogador
+        g2.drawRect(screenX, screenY, GameConfig.TILE_SIZE, GameConfig.TILE_SIZE);
     }
 
     public int getWorldX() {

@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import core.GameConfig;
 import core.GamePanel;
@@ -91,6 +90,9 @@ public class Map {
     public void draw(Graphics2D g2, int cameraX, int cameraY) {
         drawLayer(g2, baseLayer, 0, cameraX, cameraY);
         drawLayer(g2, propLayer, 1, cameraX, cameraY);
+
+        // Desenhar retângulos de colisão (apenas para depuração)
+        drawCollisionDebug(g2, cameraX, cameraY);
     }
 
     private void drawLayer(Graphics2D g2, int[][] layer, int layerType, int cameraX, int cameraY) {
@@ -121,6 +123,36 @@ public class Map {
                 int index = layer[row][col];
                 if (index != -1 && (index < 0 || index > maxIndex)) {
                     throw new RuntimeException("Tile inválido na posição [" + row + "][" + col + "]: " + index);
+                }
+            }
+        }
+    }
+
+    public void drawCollisionDebug(Graphics2D g2, int cameraX, int cameraY) {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                // Verificar colisão na camada base
+                int baseTileIndex = baseLayer[row][col];
+                if (baseTileIndex != -1) {
+                    Tile tile = tileManager.getTile(0, baseTileIndex);
+                    if (tile != null && tile.collision) {
+                        int x = col * GameConfig.TILE_SIZE - cameraX;
+                        int y = row * GameConfig.TILE_SIZE - cameraY;
+                        g2.setColor(java.awt.Color.RED); // Cor do retângulo de colisão
+                        g2.drawRect(x, y, GameConfig.TILE_SIZE, GameConfig.TILE_SIZE);
+                    }
+                }
+    
+                // Verificar colisão na camada de props
+                int propTileIndex = propLayer[row][col];
+                if (propTileIndex != -1) {
+                    Tile tile = tileManager.getTile(1, propTileIndex);
+                    if (tile != null && tile.collision) {
+                        int x = col * GameConfig.TILE_SIZE - cameraX;
+                        int y = row * GameConfig.TILE_SIZE - cameraY;
+                        g2.setColor(java.awt.Color.BLUE); // Cor do retângulo de colisão
+                        g2.drawRect(x, y, GameConfig.TILE_SIZE, GameConfig.TILE_SIZE);
+                    }
                 }
             }
         }
